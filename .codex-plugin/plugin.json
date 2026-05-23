@@ -1,6 +1,6 @@
 {
   "name": "email-protocol",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Search email accounts from Codex through provider-supported POP3 or IMAP.",
   "author": {
     "name": "Local developer"

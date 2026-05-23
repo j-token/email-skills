@@ -24,6 +24,7 @@ Email Protocol은 AI가 사용자의 메일함을 POP3 또는 IMAP으로 읽기 
 
 ```txt
 .codex-plugin/plugin.json       Codex 플러그인 manifest
+docs/mail-search-ux.md          대량 메일 조회 UX 개선 설계
 skills/email-protocol/SKILL.md  Codex skill 지시문
 scripts/init_config.py          사용자 소유 설정 파일 생성 도구
 scripts/search_imap.py          IMAP SSL/TLS 메일함 검색
