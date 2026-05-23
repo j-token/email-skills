@@ -62,6 +62,41 @@ POP also accepts `--scan-limit N` to cap how many newest messages are downloaded
 
 IMAP also accepts repeated `--folder`.
 
+## Large Mailbox Search UX
+
+사용자가 대량 메일함 검색을 요청하면 많은 메일 본문을 먼저 내려받지 않는다. `docs/mail-search-ux.md`의 UX 정책을 따른다.
+
+기본 흐름:
+
+1. 빠른 검색으로 시작한다.
+2. 본문 검사 전에 날짜 범위, 발신자, 제목으로 후보를 줄인다.
+3. IMAP에서는 가능한 한 서버 `SEARCH` 조건을 우선 사용한다.
+4. POP3에서는 provider가 지원하면 `TOP` 기반 헤더 우선 스캔을 사용한다.
+5. 전체 본문은 후보 메일에만 다운로드한다.
+6. 검색이 몇 초 이상 걸리면 진행 상황을 보고한다.
+7. 첫 검색 결과가 부족하거나 사용자가 전체 검색을 요청할 때만 범위를 확장한다.
+
+검색 모드:
+
+- 빠른 검색: 후보를 먼저 줄이고 후보 본문만 검사한다.
+- 확장 검색: `--scan-limit`, 폴더 범위, 날짜 범위를 넓힌다.
+- 정밀 검색: 더 많은 후보 본문을 검사하고 본문 키워드 매칭을 적용한다.
+
+보안 정책:
+
+- 로컬 메일함 캐시는 추가하지 않는다.
+- 메일 제목, 발신자, snippet, 본문, 추출 금액을 DB나 파일에 영구 저장하지 않는다.
+- 검색 중에는 현재 프로세스 메모리의 후보와 hit 객체만 임시로 유지한다.
+- 비밀값은 로그에 남기지 않고 원본 비밀번호를 출력하지 않는다.
+
+PDF 첨부 요청:
+
+- 사용자가 PDF 첨부 목록이나 다운로드 가능 여부를 묻는 경우 `docs/mail-search-ux.md`의 `PDF 첨부 조회와 다운로드 매뉴얼`을 따른다.
+- IMAP이 가능하면 `BODYSTRUCTURE`로 첨부 구조만 먼저 조회한다.
+- IMAP이 비활성화되어 있으면 POP3 `TOP`으로 후보를 찾고 후보 메일에만 `RETR`를 사용한다.
+- 사용자가 명시적으로 다운로드를 요청하기 전에는 PDF 파일을 저장하지 않는다.
+- 다운로드가 요청되면 Git 저장소 밖의 사용자 소유 경로에 저장하고, 저장 전 `%PDF` 헤더를 검증한다.
+
 ## Windows Console Encoding
 
 Provider emails may contain Korean text, emoji, variation selectors, HTML fragments, and other characters that fail under the Windows default `cp949` console encoding.
