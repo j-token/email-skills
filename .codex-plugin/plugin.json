@@ -1,0 +1,26 @@
+{
+  "name": "email-protocol",
+  "version": "0.1.0",
+  "description": "Search email accounts from Codex through provider-supported POP3 or IMAP.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Email Protocol",
+    "shortDescription": "Search mailboxes through POP3 or IMAP.",
+    "longDescription": "Email Protocol helps Codex search and inspect email accounts when the provider supports POP3 or IMAP. It is read-only by default and does not include SMTP sending. Provider-specific setup notes live in manuals, starting with Naver Mail.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [
+      "Search",
+      "Email",
+      "Read-only"
+    ],
+    "defaultPrompt": [
+      "Search my email receipts this month.",
+      "Find payment emails in a POP mailbox.",
+      "Search an IMAP mailbox for purchase history."
+    ]
+  }
+}

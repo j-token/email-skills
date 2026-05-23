@@ -1,0 +1,13 @@
+# Local credentials and generated account config
+*.ini
+!config/example.ini
+
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+
+# Local editor and OS metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
