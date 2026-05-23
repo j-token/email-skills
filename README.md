@@ -23,6 +23,7 @@ Email Protocol은 AI가 사용자의 메일함을 POP3 또는 IMAP으로 읽기 
 ## 저장소 구조
 
 ```txt
+.agents/plugins/marketplace.json  GitHub marketplace manifest
 .codex-plugin/plugin.json       Codex 플러그인 manifest
 docs/mail-search-ux.md          대량 메일 조회 UX 개선 설계
 skills/email-protocol/SKILL.md  Codex skill 지시문
@@ -37,6 +38,8 @@ manuals/naver.md                네이버 POP3/IMAP 설정 매뉴얼
 ## 설치 방법 1: Codex 플러그인
 
 Codex가 플러그인, skill, 매뉴얼, 스크립트를 함께 발견해야 할 때 이 방식을 사용합니다.
+
+GitHub marketplace로 추가할 때는 repo 루트의 `.agents/plugins/marketplace.json`을 사용합니다. 이 repo는 루트가 곧 `email-protocol` plugin 루트이므로 marketplace entry의 `source.path`는 `./`입니다.
 
 권장 설치 경로:
 
